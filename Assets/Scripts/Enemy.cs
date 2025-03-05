@@ -18,18 +18,32 @@ public class Enemy : MonoBehaviour
     //private AudioClip[] m_SpawnSound;
     //private AudioSource m_AS;
     private Path m_Path;
-
+    public float moveSpeed = 3f; // Vitesse de déplacement de l'ennemi
+    private Rigidbody2D rb;
+    private Transform player;
 
     private void Awake()
     {
     // m_AS = GetComponent<AudioSource>();
     }
-    private void Start()
+    void Start()
     {
-        //m_AS.PlayOneShot(m_SpawnSound[Random.Range(0, m_SpawnSound.Length)]);
+        rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player").transform; // Assurez-vous que le joueur a bien le tag "Player"
+    }
+    void FixedUpdate()
+    {
+        if (player != null)
+        {
+            Vector2 direction = (player.position - transform.position).normalized;
+            rb.velocity = direction * moveSpeed; // Applique la vitesse pour aller vers le joueur
+        }
     }
     private void Update()
     {
+
+
+        /*
         if (m_Path == null)
             CalculatePath();
 
@@ -56,10 +70,11 @@ public class Enemy : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+        */
     }
     public void Die()
     {
-
+        Debug.Log("Ennemi died");
         
 
     }
