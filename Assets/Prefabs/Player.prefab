@@ -57,6 +57,11 @@ MonoBehaviour:
   point: 0
   maxPoint: 100
   PointVie: 100
+  fireballSpeed: 10
+  fireballDistance: 5
+  fireballPrefab: {fileID: 4751774773187010781, guid: eca42ae4807c3d84b9cd7430c63634eb, type: 3}
+  Player: {fileID: 0}
+  m_AttackRate: 5
   moveSpeed: 5
 --- !u!212 &1829172103979519861
 SpriteRenderer:
@@ -182,6 +187,7 @@ MonoBehaviour:
   fireballDistance: 5
   fireballPrefab: {fileID: 0}
   Player: {fileID: 0}
+  m_AttackRate: 0
 --- !u!50 &3600808985776598399
 Rigidbody2D:
   serializedVersion: 4

@@ -9,14 +9,24 @@ public class Fireball : MonoBehaviour
     public float fireballDistance = 5f;
     public GameObject fireballPrefab;
     public PlayerControler Player;
+
+    private float m_Timer;
+    public float m_AttackRate;
+
     void Update()
     {
         if (Player.PointVie > 0 && Player.point < Player.maxPoint)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            m_Timer += Time.deltaTime;
+
+            if (m_Timer >= m_AttackRate)
             {
                 ShootFireball();
+                m_Timer = 0;
+
             }
+            
+            
         }
     }
 

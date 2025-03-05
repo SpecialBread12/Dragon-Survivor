@@ -14,7 +14,13 @@ public class PlayerControler : MonoBehaviour
     public int PointVie;
     private Animator m_Animator;
     private GameObject m_Player;
+    public float fireballSpeed = 10f;
+    public float fireballDistance = 5f;
+    public GameObject fireballPrefab;
+    public PlayerControler Player;
 
+    private float m_Timer;
+    public float m_AttackRate;
 
     public float moveSpeed = 5f; // Vitesse de déplacement
 
@@ -31,6 +37,15 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        m_Timer += Time.deltaTime;
+
+        if (m_Timer >= m_AttackRate)
+        {
+            ShootFireball();
+            m_Timer = 0;
+
+        }
+
         if (PointVie > 0 && point < maxPoint)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
@@ -203,5 +218,23 @@ public class PlayerControler : MonoBehaviour
         Debug.Log("Horra !!!");
         MenuManager.Instance.MenuVictory.gameObject.SetActive(true);
         MenuManager.Instance.MenuVictory.DisplayScore((int)point);
+    }
+
+    private void ShootFireball()
+    {
+        GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
+        Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
+        rb.velocity = transform.right * fireballSpeed;
+
+        // Destroy the fireball after reaching a certain distance
+        Destroy(fireball, fireballDistance / fireballSpeed);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Enemy t_Ennemy = collision.attachedRigidbody?.gameObject.GetComponent<Enemy>();
+        if (t_Ennemy != null)
+        {
+            Debug.Log("hit");
+        }
     }
 }

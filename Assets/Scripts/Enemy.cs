@@ -97,9 +97,9 @@ public class Enemy : MonoBehaviour
         {
             t_Player.TakeDamage(1);
             Debug.Log("Hey");
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
         }
-        else if (collision.gameObject.CompareTag("fireball"))
+        else if (collision.gameObject.CompareTag("Attack"))
         {
             Health--;
             if (Health <= 0)
@@ -110,12 +110,13 @@ public class Enemy : MonoBehaviour
         }
         
     }
-    
+    /*
     private void CalculatePath()
     {
         Tile t_StartTile = Grid.GetTile(Grid.WorldToGrid(transform.position));
         Tile t_EndTile = Grid.GetTile(Grid.WorldToGrid(Objectif.position));
         m_Path = Pathfinder.GetPath(t_StartTile, t_EndTile, false);
     }
+    */
 }
 
