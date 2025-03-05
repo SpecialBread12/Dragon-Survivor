@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3221298746946380368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 932022921396095873}
+  - component: {fileID: 4484743918497153952}
+  - component: {fileID: 6366798266711055784}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &932022921396095873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221298746946380368}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.54, y: 4.6, z: -0.005985182}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4484743918497153952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221298746946380368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd581c6f0ef0744eb1f5bfa50ad701e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Ennemy_Prefabs:
+  - {fileID: 7748349005657621593, guid: 1f448e96d5fb5274383b8ad43f7790f2, type: 3}
+  - {fileID: 126402054443864639, guid: 38548cb8119321047b63ae9bb1b043e9, type: 3}
+  IntervalMin: 1
+  IntervalMax: 1
+  Pathfinder: {fileID: 0}
+  Grid: {fileID: 0}
+  Objectif: {fileID: 0}
+  PlayerControler: {fileID: 0}
+--- !u!114 &6366798266711055784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3221298746946380368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bfa8bb57ef96146b656e6386686f86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsEntre: 0
+  IsSortie: 0
+  Exitlevel1: 0
+  ExitBoss: 0
+  x: 0
+  y: 0
+  BaseCost: 0
