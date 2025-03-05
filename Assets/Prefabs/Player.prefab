@@ -55,8 +55,9 @@ MonoBehaviour:
     m_Bits: 0
   Grid: {fileID: 0}
   point: 0
-  maxPoint: 0
-  PointVie: 0
+  maxPoint: 100
+  PointVie: 100
+  moveSpeed: 5
 --- !u!212 &1829172103979519861
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -15,11 +15,17 @@ public class PlayerControler : MonoBehaviour
     private Animator m_Animator;
     private GameObject m_Player;
 
-// Start is called before the first frame update
-void Start()
+
+    public float moveSpeed = 5f; // Vitesse de déplacement
+
+    private Rigidbody2D rb;
+    private Vector2 movement;
+    // Start is called before the first frame update
+    void Start()
     {
         m_Animator = this.gameObject.GetComponent<Animator>();
         MenuManager.Instance.HUD.DisplayHP(PointVie);
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -32,6 +38,19 @@ void Start()
                 MenuManager.Instance.MenuPause.gameObject.SetActive(!MenuManager.Instance.MenuPause.gameObject.activeSelf);
             }
 
+
+            // Récupération des inputs
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+
+            // Normalisation pour éviter d'aller plus vite en diagonale
+            if (movement.magnitude > 1)
+            {
+                movement.Normalize();
+            }
+            //Debug.Log("Mouvement: " + movement);
+
+            /* Ancien mode de mouvement
             if (Input.GetKeyUp(KeyCode.DownArrow))
             {
                 MoveY(-1);
@@ -48,13 +67,14 @@ void Start()
             {
                 MoveX(1);
             }
+            */
         }
     }
     private void FixedUpdate()
     {
-
-        
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
+    /*
     public void MoveX(int movementX)
     {
 
@@ -125,6 +145,7 @@ void Start()
             }
         }
     }
+    
     bool CanMove(Vector2 moveDirection)
     {
         // Adjust the raycast origin to start slightly above the player
@@ -142,7 +163,7 @@ void Start()
         // No wall in the way, movement is allowed
         return true;
     }
-
+    */
     public void TakeDamage(int damage)
     {
         m_Animator.SetTrigger("Hit");
