@@ -6,7 +6,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        health -= damage - (Time.deltaTime / 10000);
         if (health <= 0)
         {
             Destroy(gameObject); // L'ennemi meurt
