@@ -73,6 +73,10 @@ public class Enemy : MonoBehaviour
         }
         */
     }
+    public void TakeDamage(float damage)
+    {
+
+    }
     public void Die()
     {
         Debug.Log("Ennemi died");
