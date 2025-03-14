@@ -11,7 +11,7 @@ public class PlayerControler : MonoBehaviour
     public Grid Grid;
     public float point;
     public float maxPoint;
-    public int PointVie;
+    public float PointVie;
     private Animator m_Animator;
     private GameObject m_Player;
     public float fireballSpeed = 10f;
@@ -26,6 +26,11 @@ public class PlayerControler : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 movement;
+
+
+    public int damage = 1;
+    public float attackSpeed = 1;
+    public float defence = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -179,7 +184,7 @@ public class PlayerControler : MonoBehaviour
         return true;
     }
     */
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         m_Animator.SetTrigger("Hit");
         Debug.Log("Hurt");
@@ -236,5 +241,11 @@ public class PlayerControler : MonoBehaviour
         {
             Debug.Log("hit");
         }
+    }
+    public void LevelUp()
+    {
+        PointVie += 1;
+        attackSpeed += 0.01f;
+        moveSpeed += 0.1f;
     }
 }

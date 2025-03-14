@@ -10,7 +10,7 @@ public class HUD : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI m_TextPoint;
 
-    public void DisplayHP(int a_HP)
+    public void DisplayHP(float a_HP)
     {
         m_TextHP.text = a_HP.ToString();
     }

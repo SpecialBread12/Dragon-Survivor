@@ -21,7 +21,8 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 3f; // Vitesse de déplacement de l'ennemi
     private Rigidbody2D rb;
     private Transform player;
-
+    public Experience Experience;
+    public float damage;
     private void Awake()
     {
     // m_AS = GetComponent<AudioSource>();
@@ -75,7 +76,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         Debug.Log("Ennemi died");
-        
+        Experience.GainExperience(2);
 
     }
     /*
@@ -95,7 +96,7 @@ public class Enemy : MonoBehaviour
         PlayerControler t_Player = collision.attachedRigidbody?.gameObject.GetComponent<PlayerControler>();
         if (t_Player != null)
         {
-            t_Player.TakeDamage(1);
+            t_Player.TakeDamage(damage - t_Player.defence);
             Debug.Log("Hey");
             //Destroy(this.gameObject);
         }

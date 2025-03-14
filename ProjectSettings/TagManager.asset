@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Wall
   - Ennemy
-  - fireball
+  - Attack
   layers:
   - Default
   - TransparentFX
