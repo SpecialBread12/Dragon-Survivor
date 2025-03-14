@@ -247,5 +247,6 @@ public class PlayerControler : MonoBehaviour
         PointVie += 1;
         attackSpeed += 0.01f;
         moveSpeed += 0.1f;
+
     }
 }
