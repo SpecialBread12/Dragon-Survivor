@@ -233,7 +233,7 @@ public class PlayerControler : MonoBehaviour
     public void TakeDamage(float damage)
     {
         m_Animator.SetTrigger("Hit");
-        Debug.Log("Hurt");
+        //Debug.Log("Hurt");
         hp -= damage ;
         MenuManager.Instance.HUD.DisplayHP(hp);
         if (hp <= 0)

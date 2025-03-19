@@ -33,6 +33,7 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform; // Assurez-vous que le joueur a bien le tag "Player"
         Experience = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Experience>();
+         
     }
     void FixedUpdate()
     {
@@ -106,7 +107,7 @@ public class Enemy : MonoBehaviour
         if (t_Player != null)
         {
             t_Player.TakeDamage(damage - t_Player.defence);
-            Debug.Log("Hey");
+            //Debug.Log("Hey");
             //Destroy(this.gameObject);
         }
         else if (collision.gameObject.CompareTag("Attack"))

@@ -49,7 +49,7 @@ public class Grid : MonoBehaviour
         if (m_ProceduralMap)
         {
             GenerateRandomMap();
-            Player.transform.position = new Vector3(15.5f, 1.5f, 0);
+            //Player.transform.position = new Vector3(15.5f, 1.5f, 0);
         }
     }
 
@@ -64,7 +64,7 @@ public class Grid : MonoBehaviour
                 if (x == 0 || x == ColumnCount - 1 || y == 0 || y == RowCount - 1)
                 {
                     // If on the border, instantiate a wall
-                    InstantiateWallTile(x, y);
+                    //InstantiateWallTile(x, y);
                 }
                 else
                 {
@@ -77,40 +77,40 @@ public class Grid : MonoBehaviour
         // Set entry and exit points
 
         // Add pathfinding logic here
-        List<Vector2Int> path = FindPath(new Vector2Int(EntryX, 0), new Vector2Int(ExitX, (int)(RowCount - 1)));
+        //List<Vector2Int> path = FindPath(new Vector2Int(EntryX, 0), new Vector2Int(ExitX, (int)(RowCount - 1)));
 
         // Clear walls along the path
-        foreach (Vector2Int pathPosition in path)
-        {
-            ClearWallAtPosition(pathPosition);
-        }
+        //foreach (Vector2Int pathPosition in path)
+        //{
+        //    ClearWallAtPosition(pathPosition);
+        //}
         //Create the entry for the player
-        OpenEntry(15, 0);
-        OpenExit(15, 29);
+        //OpenEntry(15, 0);
+        //OpenExit(15, 29);
         //Protect the entry to prevent a wall from being on them
-        DestroyWall(new Vector2Int(15, 0));
-        DestroyWall(new Vector2Int(15, 29));
+        //DestroyWall(new Vector2Int(15, 0));
+        //DestroyWall(new Vector2Int(15, 29));
         //Protect the entry from having a wall right in front of them
-        DestroyWall(new Vector2Int(15, 1));
-        DestroyWall(new Vector2Int(14, 1));
-        DestroyWall(new Vector2Int(16, 1));
+        //DestroyWall(new Vector2Int(15, 1));
+        //DestroyWall(new Vector2Int(14, 1));
+        //DestroyWall(new Vector2Int(16, 1));
 
-        DestroyWall(new Vector2Int(14, 28));
-        DestroyWall(new Vector2Int(15, 28));
-        DestroyWall(new Vector2Int(16, 28));
+        //DestroyWall(new Vector2Int(14, 28));
+        //DestroyWall(new Vector2Int(15, 28));
+        //DestroyWall(new Vector2Int(16, 28));
 
 
 
         //Since we removed the wall, there will be a gap
-        InstantiateGroundTile(14, 1);
-        InstantiateGroundTile(15, 1);
-        InstantiateGroundTile(16, 1);
+        //InstantiateGroundTile(14, 1);
+        //InstantiateGroundTile(15, 1);
+        //InstantiateGroundTile(16, 1);
 
-        InstantiateGroundTile(14, 28);
-        InstantiateGroundTile(15, 28);
-        InstantiateGroundTile(16, 28);
+        //InstantiateGroundTile(14, 28);
+        //InstantiateGroundTile(15, 28);
+        //InstantiateGroundTile(16, 28);
 
-        GenerateGems();
+        //GenerateGems();
     }
 
     private void GenerateGems()
