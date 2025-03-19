@@ -15,7 +15,7 @@ public class Fireball : MonoBehaviour
 
     void Update()
     {
-        if (Player.PointVie > 0 && Player.point < Player.maxPoint)
+        if (Player.hp > 0 && Player.point < Player.maxHP)
         {
             m_Timer += Time.deltaTime;
 

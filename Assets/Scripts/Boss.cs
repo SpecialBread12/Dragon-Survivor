@@ -67,7 +67,7 @@ public class Boss : MonoBehaviour
             if (m_Vie <= 0)
             {
                 Destroy(gameObject);
-                PlayerControler.TakePoint(1000);
+                //PlayerControler.TakePoint(1000);
                 MenuManager.Instance.MenuVictory.gameObject.SetActive(true);
             }
         }

@@ -14,6 +14,7 @@ public class Experience : MonoBehaviour
             m_ExperiencePoint = 0;
             PlayerControler.LevelUp();
         }
+        m_ExperiencePoint++;
     }
     public void GainExperience(int point)
     {

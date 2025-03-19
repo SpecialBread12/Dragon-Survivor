@@ -20,7 +20,7 @@ public class Objets : MonoBehaviour
         if (t_Player != null)
         {
             //Appeler une fonction de point sur le joueur
-            t_Player.TakePoint(Valeur);
+            //t_Player.TakePoint(Valeur);
 
             Destroy(gameObject);
         }

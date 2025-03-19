@@ -10,33 +10,56 @@ public class PlayerControler : MonoBehaviour
     public LayerMask WallLayer;
     public Grid Grid;
     public float point;
-    public float maxPoint;
-    public float PointVie;
     private Animator m_Animator;
     private GameObject m_Player;
     public float fireballSpeed = 10f;
     public float fireballDistance = 5f;
-    public GameObject fireballPrefab;
     public PlayerControler Player;
-
+    public GameObject projectilePrefab;
+    public Transform firePoint;
     private float m_Timer;
-    public float m_AttackRate;
 
-    public float moveSpeed = 5f; // Vitesse de déplacement
 
     private Rigidbody2D rb;
     private Vector2 movement;
 
+    //Stats
+    public int level = 1; //Current level
+    public int maxHP = 20; //Max life
+    public float hp; //Current life
+    public float defence = 0; //Current defence
+    public int damage = 1; //Current damage 
+    public float critChance = 0; //Current crit chance
+    public float critMultiplier = 1.5f; //Current crit Multiplier
+    public float attackSpeed = 1; //Current attack speed
+    public float rangeMultiplier = 1; //Current range multiplier
+    public float moveSpeed = 5f; //Current movement speed
 
-    public int damage = 1;
-    public float attackSpeed = 1;
-    public float defence = 0;
+
+
+    //Capacité
+    //FireCircle
+    public int segments = 50; // Nombre de points pour le cercle
+    public float radius = 2f; // Rayon de la zone
+    private LineRenderer line;
+
     // Start is called before the first frame update
     void Start()
     {
+        hp = maxHP;
         m_Animator = this.gameObject.GetComponent<Animator>();
-        MenuManager.Instance.HUD.DisplayHP(PointVie);
+        MenuManager.Instance.HUD.DisplayHP(hp);
         rb = GetComponent<Rigidbody2D>();
+
+
+
+        //FireCircle
+        line = gameObject.AddComponent<LineRenderer>();
+        line.positionCount = segments + 1;
+        line.useWorldSpace = false;
+        line.startWidth = 0.05f;
+        line.endWidth = 0.05f;
+        DrawCircle();
     }
 
     // Update is called once per frame
@@ -44,14 +67,14 @@ public class PlayerControler : MonoBehaviour
     {
         m_Timer += Time.deltaTime;
 
-        if (m_Timer >= m_AttackRate)
+        if (m_Timer >= 5 / attackSpeed)
         {
             ShootFireball();
             m_Timer = 0;
 
         }
-
-        if (PointVie > 0 && point < maxPoint)
+        
+        if (hp > 0 && point < maxHP)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -88,6 +111,7 @@ public class PlayerControler : MonoBehaviour
                 MoveX(1);
             }
             */
+            
         }
     }
     private void FixedUpdate()
@@ -188,9 +212,9 @@ public class PlayerControler : MonoBehaviour
     {
         m_Animator.SetTrigger("Hit");
         Debug.Log("Hurt");
-        PointVie -= damage ;
-        MenuManager.Instance.HUD.DisplayHP(PointVie);
-        if (PointVie <= 0)
+        hp -= damage ;
+        MenuManager.Instance.HUD.DisplayHP(hp);
+        if (hp <= 0)
         {
             Debug.Log("You are ded");
             m_Animator.SetBool("IsDead", true);
@@ -202,22 +226,6 @@ public class PlayerControler : MonoBehaviour
         MenuManager.Instance.MenuDead.gameObject.SetActive(true);
         MenuManager.Instance.MenuDead.DisplayScore((int)point);
     }
-
-    public void TakePoint(float valeur)
-    {
-        if (maxPoint > point)
-        {
-            Debug.Log("Bravo !");
-            point += valeur;
-            MenuManager.Instance.HUD.DisplayPoint((int)point);
-        }
-
-        if (maxPoint <= point)
-        {
-            Victory();
-        }
-    }
-
     private void Victory()
     {
         Debug.Log("Horra !!!");
@@ -227,12 +235,7 @@ public class PlayerControler : MonoBehaviour
 
     private void ShootFireball()
     {
-        GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-        Rigidbody2D rb = fireball.GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * fireballSpeed;
-
-        // Destroy the fireball after reaching a certain distance
-        Destroy(fireball, fireballDistance / fireballSpeed);
+        Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -244,9 +247,43 @@ public class PlayerControler : MonoBehaviour
     }
     public void LevelUp()
     {
-        PointVie += 1;
+        Debug.Log("PlayerLevelUp");
+        level += 1;
+        maxHP += 1;
+        hp += 1;
         attackSpeed += 0.01f;
         moveSpeed += 0.1f;
+        rangeMultiplier += 0.01f;
+        MenuManager.Instance.HUD.DisplayLevel(level);
+        MenuManager.Instance.HUD.DisplayHP(hp);
+        //SetRadius((radius * rangeMultiplier / 5) + 1);
 
+    }
+
+    public void FireballAttack()
+    {
+
+    }
+
+
+
+
+
+
+    void DrawCircle()
+    {
+        float angle = 0f;
+        for (int i = 0; i < segments + 1; i++)
+        {
+            float x = Mathf.Cos(angle) * radius;
+            float y = Mathf.Sin(angle) * radius;
+            line.SetPosition(i, new Vector3(x, y, 0));
+            angle += 2 * Mathf.PI / segments;
+        }
+    }
+    public void SetRadius(float newRadius)
+    {
+        radius = newRadius;
+        DrawCircle();
     }
 }
