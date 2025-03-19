@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Experience : MonoBehaviour
 {
-    private int m_ExperiencePoint;
+    public int m_ExperiencePoint;
     private const int m_MaxExp = 100;
     public PlayerControler PlayerControler;
     private void FixedUpdate()
@@ -14,7 +14,7 @@ public class Experience : MonoBehaviour
             m_ExperiencePoint = 0;
             PlayerControler.LevelUp();
         }
-        m_ExperiencePoint++;
+        //m_ExperiencePoint++;
     }
     public void GainExperience(int point)
     {

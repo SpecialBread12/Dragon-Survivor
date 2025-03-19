@@ -18,7 +18,7 @@ public class PlayerControler : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform firePoint;
     private float m_Timer;
-
+    public DamageAura onionWeapon;
 
     private Rigidbody2D rb;
     private Vector2 movement;
@@ -42,6 +42,7 @@ public class PlayerControler : MonoBehaviour
     public int segments = 50; // Nombre de points pour le cercle
     public float radius = 2f; // Rayon de la zone
     private LineRenderer line;
+    private bool m_IsCircleOn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -54,12 +55,14 @@ public class PlayerControler : MonoBehaviour
 
 
         //FireCircle
+        onionWeapon.gameObject.SetActive(false);
+
         line = gameObject.AddComponent<LineRenderer>();
         line.positionCount = segments + 1;
         line.useWorldSpace = false;
         line.startWidth = 0.05f;
         line.endWidth = 0.05f;
-        DrawCircle();
+
     }
 
     // Update is called once per frame
@@ -111,7 +114,12 @@ public class PlayerControler : MonoBehaviour
                 MoveX(1);
             }
             */
-            
+            if (level > 10 && m_IsCircleOn == false)
+            {
+                m_IsCircleOn = true;
+                DrawCircle();
+                onionWeapon.gameObject.SetActive(true);
+            }
         }
     }
     private void FixedUpdate()

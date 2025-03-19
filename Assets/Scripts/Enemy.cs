@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform; // Assurez-vous que le joueur a bien le tag "Player"
+        Experience = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Experience>();
     }
     void FixedUpdate()
     {
@@ -42,7 +43,10 @@ public class Enemy : MonoBehaviour
     }
     private void Update()
     {
-
+        if (Health <= 0)
+        {
+            Die();
+        }
 
         /*
         if (m_Path == null)
@@ -81,7 +85,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Ennemi died");
         Experience.GainExperience(2);
-
+        Destroy(this.gameObject);
     }
     /*
     private void OnDrawGizmosSelected()
@@ -106,12 +110,7 @@ public class Enemy : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Attack"))
         {
-            Health--;
-            if (Health <= 0)
-            {
-                Debug.Log("Hey you ded");
-                Destroy(this.gameObject);
-            }
+            
         }
         
     }
