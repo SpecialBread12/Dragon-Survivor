@@ -45,8 +45,11 @@ public class PlayerControler : MonoBehaviour
     private bool m_IsCircleOn = false;
 
     // Start is called before the first frame update
+    public float gameDuration = 9f; //900 for 15 minute
+    public float remainingTime;
     void Start()
     {
+        remainingTime = gameDuration;
         hp = maxHP;
         m_Animator = this.gameObject.GetComponent<Animator>();
         MenuManager.Instance.HUD.DisplayHP(hp);
@@ -68,7 +71,18 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         m_Timer += Time.deltaTime;
+
+        if (remainingTime > 0)
+        {
+            remainingTime -= Time.deltaTime;
+            //UpdateTimerDisplay();
+        }
+        else
+        {
+            Victory();
+        }
 
         if (m_Timer >= 5 / attackSpeed)
         {

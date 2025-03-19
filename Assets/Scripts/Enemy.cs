@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     private Transform player;
     public Experience Experience;
     public float damage;
+
     private void Awake()
     {
     // m_AS = GetComponent<AudioSource>();
